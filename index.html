@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>會員專屬活動</title>
+
+  <meta
+    name="description"
+    content="探索最新會員活動及專屬會員禮遇。"
+  >
+
+  <!-- Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="會員專屬活動">
+  <meta
+    property="og:description"
+    content="探索最新會員活動及專屬會員禮遇。"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        "Noto Sans TC",
+        Arial,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(27, 91, 137, 0.55) 0%,
+          rgba(8, 39, 64, 0.25) 35%,
+          transparent 60%
+        ),
+        linear-gradient(
+          180deg,
+          #09253a 0%,
+          #061a2b 45%,
+          #03121e 100%
+        );
+
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+      width: 100%;
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(26px, env(safe-area-inset-top))
+        20px
+        max(26px, env(safe-area-inset-bottom));
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+
+      padding: 48px 28px 42px;
+
+      border-radius: 30px;
+
+      border: 1px solid rgba(111, 179, 228, 0.22);
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(35, 106, 156, 0.22),
+          transparent 42%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(15, 52, 82, 0.97) 0%,
+          rgba(5, 31, 51, 0.98) 100%
+        );
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* subtle light */
+    .card::before {
+      content: "";
+      position: absolute;
+
+      width: 380px;
+      height: 380px;
+
+      left: 50%;
+      top: -240px;
+
+      transform: translateX(-50%);
+
+      background: radial-gradient(
+        circle,
+        rgba(43, 166, 235, 0.16),
+        transparent 68%
+      );
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       BADGE
+    ========================= */
+
+    .badge {
+      position: relative;
+      z-index: 2;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      padding: 9px 18px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(46, 224, 102, 0.55);
+
+      background: rgba(11, 68, 58, 0.46);
+
+      color: #4bf57c;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      box-shadow:
+        0 0 22px rgba(46, 224, 102, 0.08),
+        inset 0 0 18px rgba(46, 224, 102, 0.04);
+    }
+
+    .badge::before {
+      content: "";
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #39e768;
+
+      box-shadow:
+        0 0 12px rgba(57, 231, 104, 0.95);
+    }
+
+    /* =========================
+       OFFER
+    ========================= */
+
+    .offer {
+      position: relative;
+
+      margin-top: 45px;
+    }
+
+    .offer-number {
+      position: relative;
+      z-index: 2;
+
+      display: inline-block;
+
+      font-size: clamp(82px, 22vw, 126px);
+      line-height: 0.88;
+
+      font-weight: 900;
+
+      letter-spacing: -6px;
+
+      color: #ffd45f;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fff1a5 0%,
+          #ffd761 35%,
+          #ffbd2e 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      filter:
+        drop-shadow(0 5px 0 rgba(111, 63, 0, 0.12))
+        drop-shadow(0 0 9px rgba(255, 198, 54, 0.18));
+    }
+
+    /* gold line behind number */
+    .offer::before {
+      content: "";
+
+      position: absolute;
+
+      width: 82%;
+      height: 1px;
+
+      left: 9%;
+      top: 52%;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 210, 80, 0.85),
+        transparent
+      );
+
+      box-shadow:
+        0 0 10px rgba(255, 205, 66, 0.5);
+
+      z-index: 1;
+    }
+
+    /* light dots */
+    .spark {
+      position: absolute;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: #fff6bd;
+
+      box-shadow:
+        0 0 9px 3px rgba(255, 217, 89, 0.55);
+
+      z-index: 3;
+    }
+
+    .spark.one {
+      left: 13%;
+      top: 8%;
+    }
+
+    .spark.two {
+      right: 13%;
+      bottom: 4%;
+    }
+
+    .spark.three {
+      left: 50%;
+      bottom: 2%;
+    }
+
+    /* =========================
+       TITLE
+    ========================= */
+
+    .offer-title {
+      margin-top: 30px;
+
+      font-size: clamp(38px, 10vw, 54px);
+      line-height: 1.15;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+      color: #ffffff;
+
+      text-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.18),
+        0 0 14px rgba(255, 255, 255, 0.08);
+    }
+
+    .gold-divider {
+      width: 58%;
+      max-width: 260px;
+      height: 1px;
+
+      margin: 20px auto 0;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 211, 82, 0.55),
+        transparent
+      );
+    }
+
+    /* =========================
+       DESCRIPTION
+    ========================= */
+
+    .description {
+      margin-top: 34px;
+
+      color: #a9bed2;
+
+      font-size: 16px;
+      line-height: 1.8;
+
+      font-weight: 400;
+
+      letter-spacing: 0.2px;
+    }
+
+    .description strong {
+      color: #ffffff;
+
+      font-weight: 700;
+    }
+
+    /* =========================
+       BLUE DIVIDER
+    ========================= */
+
+    .divider {
+      position: relative;
+
+      width: 76px;
+      height: 1px;
+
+      margin: 32px auto 29px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(111, 211, 255, 0.65),
+        transparent
+      );
+    }
+
+    .divider::after {
+      content: "";
+
+      position: absolute;
+
+      width: 28px;
+      height: 2px;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      background: #7be0ff;
+
+      box-shadow:
+        0 0 8px rgba(87, 205, 255, 0.8);
+    }
+
+    /* =========================
+       QUESTION
+    ========================= */
+
+    .question {
+      margin-bottom: 25px;
+
+      color: #ffffff;
+
+      font-size: 19px;
+      font-weight: 800;
+
+      letter-spacing: 0.4px;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+
+      gap: 14px;
+    }
+
+    .cta {
+      width: 100%;
+      min-height: 64px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 15px;
+
+      text-decoration: none;
+
+      font-size: 18px;
+      font-weight: 700;
+
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .cta:active {
+      transform: scale(0.985);
+    }
+
+    /* MAIN CTA */
+
+    .primary {
+      gap: 14px;
+
+      color: #02170b;
+
+      background:
+        linear-gradient(
+          135deg,
+          #48ef70 0%,
+          #22d950 100%
+        );
+
+      box-shadow:
+        0 12px 28px rgba(34, 217, 80, 0.18),
+        0 0 22px rgba(34, 217, 80, 0.09);
+    }
+
+    .primary:hover {
+      box-shadow:
+        0 14px 32px rgba(34, 217, 80, 0.24),
+        0 0 28px rgba(34, 217, 80, 0.12);
+    }
+
+    .arrow {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    /* WHATSAPP CTA */
+
+    .whatsapp {
+      gap: 10px;
+
+      color: #42ef78;
+
+      border: 1px solid rgba(45, 225, 104, 0.65);
+
+      background:
+        rgba(3, 35, 35, 0.45);
+
+      box-shadow:
+        inset 0 0 20px rgba(45, 225, 104, 0.025);
+    }
+
+    .whatsapp:hover {
+      background:
+        rgba(6, 57, 48, 0.55);
+    }
+
+    .whatsapp-icon {
+      width: 23px;
+      height: 23px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .whatsapp-icon svg {
+      width: 100%;
+      height: 100%;
+
+      fill: currentColor;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 520px) {
+
+      .page {
+        align-items: flex-start;
+
+        padding:
+          max(28px, env(safe-area-inset-top))
+          16px
+          max(28px, env(safe-area-inset-bottom));
+      }
+
+      .card {
+        max-width: 390px;
+
+        padding:
+          51px
+          27px
+          40px;
+
+        border-radius: 29px;
+      }
+
+      .badge {
+        font-size: 13px;
+
+        padding: 8px 16px;
+      }
+
+      .offer {
+        margin-top: 52px;
+      }
+
+      .offer-number {
+        font-size: clamp(82px, 25vw, 108px);
+
+        letter-spacing: -5px;
+      }
+
+      .offer-title {
+        margin-top: 31px;
+
+        font-size: 39px;
+      }
+
+      .gold-divider {
+        margin-top: 18px;
+      }
+
+      .description {
+        margin-top: 31px;
+
+        font-size: 15px;
+
+        line-height: 1.9;
+      }
+
+      .divider {
+        margin-top: 31px;
+        margin-bottom: 28px;
+      }
+
+      .question {
+        font-size: 18px;
+
+        margin-bottom: 25px;
+      }
+
+      .cta {
+        min-height: 62px;
+
+        font-size: 17px;
+      }
+    }
+
+    /* SMALL PHONES */
+
+    @media (max-width: 360px) {
+
+      .page {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .card {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .offer-number {
+        font-size: 78px;
+      }
+
+      .offer-title {
+        font-size: 35px;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+
+      .question {
+        font-size: 17px;
+      }
+
+      .cta {
+        font-size: 16px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <section class="card">
+
+      <!-- Badge -->
+      <div class="badge">
+        新會員專屬
+      </div>
+
+
+      <!-- 250% -->
+      <div class="offer">
+
+        <span class="spark one"></span>
+        <span class="spark two"></span>
+        <span class="spark three"></span>
+
+        <div class="offer-number">
+          250%
+        </div>
+
+      </div>
+
+
+      <!-- Title -->
+      <h1 class="offer-title">
+        新人豪禮
+      </h1>
+
+      <div class="gold-divider"></div>
+
+
+      <!-- Description -->
+      <div class="description">
+        首次加入，即享
+        <strong>專屬會員禮遇</strong>
+      </div>
+
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+
+      <!-- Question -->
+      <div class="question">
+        準備好加入了嗎？
+      </div>
+
+
+      <!-- Buttons -->
+      <div class="buttons">
+
+        <!-- Join Button -->
+        <a
+          class="cta primary"
+          href="https://96jqk.com/?ag=kfbads001"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>立即加入</span>
+          <span class="arrow">→</span>
+        </a>
+
+
+        <!-- WhatsApp Button -->
+        <a
+          class="cta whatsapp"
+          href="https://wa.me/85252176245?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%96%B0%E6%9C%83%E5%93%A1%E8%B1%AA%E7%A4%BC%E3%80%82%E3%80%90KFBADS002%E3%80%91"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="whatsapp-icon">
+
+            <svg
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+            >
+              <path d="M16.01 3C8.83 3 3 8.67 3 15.65c0 2.46.73 4.86 2.1 6.91L3 29l6.65-2.06a13.18 13.18 0 0 0 6.36 1.64C23.18 28.58 29 22.92 29 15.65 29 8.67 23.18 3 16.01 3Zm0 23.45c-2.05 0-4.05-.54-5.79-1.57l-.42-.25-3.95 1.22 1.28-3.75-.27-.43a10.45 10.45 0 0 1-1.73-5.77c0-5.81 4.88-10.54 10.88-10.54 6 0 10.88 4.73 10.88 10.54 0 5.82-4.88 10.55-10.88 10.55Zm5.97-7.89c-.33-.16-1.94-.93-2.24-1.04-.3-.11-.52-.16-.74.16-.22.32-.85 1.04-1.04 1.25-.19.22-.38.24-.71.08-.33-.16-1.38-.49-2.63-1.57-.97-.84-1.63-1.88-1.82-2.2-.19-.32-.02-.49.14-.65.15-.14.33-.38.49-.57.16-.19.22-.32.33-.54.11-.22.05-.41-.03-.57-.08-.16-.74-1.73-1.01-2.37-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.57.08-.88.41-.3.32-1.15 1.09-1.15 2.66 0 1.57 1.18 3.09 1.34 3.3.16.22 2.32 3.44 5.62 4.82.79.33 1.4.53 1.88.68.79.24 1.5.21 2.07.13.63-.09 1.94-.77 2.21-1.52.27-.75.27-1.39.19-1.52-.08-.14-.3-.22-.63-.38Z"/>
+            </svg>
+
+          </span>
+
+          <span>
+            WhatsApp 聯絡我們
+          </span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
